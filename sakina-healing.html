@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakīna Healing — Islamic Psychotherapy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sage: #4a7c6f; --sage-light: #e8f0ee; --sage-mid: #8fb8b0;
+      --gold: #c9a84c; --gold-light: #f7f0e0; --cream: #faf8f4;
+      --text-dark: #2c2c28; --text-mid: #5a5a54; --text-light: #8a8a80;
+    }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text-dark); }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; border-bottom: 1px solid rgba(74,124,111,0.15); background: var(--cream); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--sage); letter-spacing: 0.5px; }
+    .nav-logo span { color: var(--gold); font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.88rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 400; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-cta { background: var(--sage); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 2px; font-family: 'Lato', sans-serif; font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .nav-cta:hover { background: #3a6b5e; }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; overflow: hidden; }
+    .hero-left { padding: 5rem 3rem 5rem 4rem; display: flex; flex-direction: column; justify-content: center; background: var(--cream); position: relative; }
+    .hero-left::before { content: '﷽'; position: absolute; top: 2rem; left: 3.5rem; font-size: 1rem; color: var(--gold); opacity: 0.7; letter-spacing: 2px; }
+    .hero-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage); border: 1px solid var(--sage-mid); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.8rem; width: fit-content; }
+    .hero-h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; line-height: 1.18; color: var(--text-dark); margin-bottom: 1.5rem; font-weight: 400; }
+    .hero-h1 em { color: var(--sage); font-style: italic; }
+    .hero-sub { font-size: 1rem; color: var(--text-mid); line-height: 1.8; max-width: 440px; margin-bottom: 2.5rem; font-weight: 300; }
+    .hero-btns { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary { background: var(--sage); color: white; padding: 0.85rem 2rem; border: none; border-radius: 2px; cursor: pointer; font-family: 'Lato', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.2s; }
+    .btn-primary:hover { background: #3a6b5e; }
+    .btn-ghost { background: transparent; color: var(--sage); padding: 0.85rem 2rem; border: 1px solid var(--sage-mid); border-radius: 2px; cursor: pointer; font-family: 'Lato', sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.2s; }
+    .btn-ghost:hover { background: var(--sage-light); }
+    .hero-right { background: linear-gradient(160deg, #3a6b5e 0%, #2d5549 50%, #1e3d35 100%); display: flex; align-items: center; justify-content: center; padding: 3rem; position: relative; overflow: hidden; }
+    .hero-right::before { content: ''; position: absolute; width: 500px; height: 500px; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; top: -100px; right: -100px; }
+    .hero-right::after { content: ''; position: absolute; width: 350px; height: 350px; border: 1px solid rgba(201,168,76,0.15); border-radius: 50%; bottom: -80px; left: -60px; }
+    .chat-preview { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; width: 100%; max-width: 400px; padding: 1.5rem; z-index: 1; }
+    .chat-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .chat-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(201,168,76,0.25); border: 1px solid rgba(201,168,76,0.4); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .chat-header-info h4 { color: white; font-size: 0.9rem; font-weight: 400; font-family: 'Playfair Display', serif; }
+    .chat-header-info p { color: rgba(255,255,255,0.5); font-size: 0.72rem; letter-spacing: 1px; }
+    .online-dot { width: 7px; height: 7px; background: #6dbb9a; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .msg { margin-bottom: 0.8rem; }
+    .msg-ai { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); padding: 0.7rem 1rem; border-radius: 0 10px 10px 10px; font-size: 0.82rem; line-height: 1.6; max-width: 90%; font-weight: 300; }
+    .msg-user { background: rgba(201,168,76,0.2); color: rgba(255,255,255,0.9); padding: 0.7rem 1rem; border-radius: 10px 10px 0 10px; font-size: 0.82rem; line-height: 1.6; max-width: 80%; margin-left: auto; font-weight: 300; }
+    .msg-time { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 3px; padding: 0 4px; }
+    .msg-time.right { text-align: right; }
+    .chat-input-preview { margin-top: 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.7rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .chat-input-preview span { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 300; }
+    .send-btn { background: var(--gold); border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .send-btn svg { width: 13px; height: 13px; fill: white; }
+
+    /* FEATURES */
+    .features { padding: 6rem 4rem; background: white; }
+    .section-label { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; text-align: center; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; text-align: center; color: var(--text-dark); margin-bottom: 3.5rem; }
+    .section-title em { color: var(--sage); font-style: italic; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 960px; margin: 0 auto; }
+    .feature-card { padding: 2rem 1.8rem; border: 1px solid rgba(74,124,111,0.12); border-radius: 4px; transition: all 0.25s; }
+    .feature-card:hover { border-color: var(--sage-mid); background: var(--sage-light); }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.6rem; color: var(--text-dark); }
+    .feature-card p { font-size: 0.87rem; color: var(--text-mid); line-height: 1.75; font-weight: 300; }
+
+    /* METHODS BAR */
+    .methods-bar { background: var(--gold-light); border-top: 1px solid rgba(201,168,76,0.2); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 1.2rem 4rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .methods-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-right: 0.5rem; white-space: nowrap; }
+    .method-pill { font-size: 0.78rem; padding: 0.3rem 0.9rem; background: white; border: 1px solid rgba(201,168,76,0.35); border-radius: 20px; color: var(--text-mid); font-weight: 300; white-space: nowrap; }
+    .method-pill.highlight { background: var(--sage); color: white; border-color: var(--sage); font-weight: 400; }
+
+    /* CHAT SECTION */
+    .chat-section { padding: 6rem 4rem; background: var(--cream); }
+    .chat-container { max-width: 720px; margin: 0 auto; }
+    .chat-box { background: white; border: 1px solid rgba(74,124,111,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+    .chat-box-header { background: var(--sage); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .chat-box-avatar { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .chat-box-info h3 { color: white; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; }
+    .chat-box-info p { color: rgba(255,255,255,0.65); font-size: 0.75rem; }
+    .status { color: rgba(255,255,255,0.7) !important; font-size: 0.72rem !important; display: flex; align-items: center; gap: 4px; }
+    #messages { padding: 1.5rem; height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+    #messages::-webkit-scrollbar { width: 4px; }
+    #messages::-webkit-scrollbar-thumb { background: var(--sage-mid); border-radius: 2px; }
+    .msg-row { display: flex; gap: 0.6rem; align-items: flex-end; }
+    .msg-row.user { flex-direction: row-reverse; }
+    .msg-row .avatar-sm { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: var(--sage-light); border: 1px solid var(--sage-mid); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+    .msg-row.user .avatar-sm { background: var(--gold-light); border-color: var(--gold); }
+    .bubble { max-width: 80%; padding: 0.75rem 1rem; font-size: 0.88rem; line-height: 1.65; border-radius: 12px; font-weight: 300; color: var(--text-dark); }
+    .bubble.ai { background: var(--sage-light); border-radius: 4px 12px 12px 12px; }
+    .bubble.user { background: var(--gold-light); border-radius: 12px 4px 12px 12px; }
+    .typing { display: flex; gap: 4px; align-items: center; padding: 0.75rem 1rem; }
+    .typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--sage-mid); animation: bounce 1.2s ease infinite; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)} }
+    .chat-input-row { padding: 1rem 1.2rem; border-top: 1px solid rgba(74,124,111,0.1); display: flex; gap: 0.8rem; align-items: center; background: white; }
+    #userInput { flex: 1; border: 1px solid rgba(74,124,111,0.2); border-radius: 6px; padding: 0.7rem 1rem; font-family: 'Lato', sans-serif; font-size: 0.9rem; color: var(--text-dark); background: var(--cream); outline: none; font-weight: 300; transition: border-color 0.2s; }
+    #userInput:focus { border-color: var(--sage); }
+    #sendBtn { background: var(--sage); border: none; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; }
+    #sendBtn:hover { background: #3a6b5e; }
+    #sendBtn svg { width: 16px; height: 16px; fill: white; }
+    .disclaimer { text-align: center; margin-top: 1rem; font-size: 0.75rem; color: var(--text-light); font-weight: 300; }
+    .quick-prompts { display: flex; gap: 0.5rem; flex-wrap: wrap; padding: 0.75rem 1.2rem; border-top: 1px solid rgba(74,124,111,0.08); }
+    .qp { font-size: 0.75rem; padding: 0.35rem 0.8rem; border: 1px solid rgba(74,124,111,0.2); border-radius: 20px; cursor: pointer; color: var(--sage); background: var(--sage-light); font-family: 'Lato', sans-serif; font-weight: 300; transition: all 0.15s; white-space: nowrap; }
+    .qp:hover { background: var(--sage); color: white; border-color: var(--sage); }
+
+    /* FOOTER */
+    footer { background: #1e3d35; padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: rgba(255,255,255,0.85); }
+    .footer-logo span { color: var(--gold); font-style: italic; }
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.78rem; font-weight: 300; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .features { padding: 4rem 1.5rem; }
+      .chat-section { padding: 4rem 1.5rem; }
+      .methods-bar { padding: 1rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Sakīna <span>Healing</span></div>
+  <div class="nav-links">
+    <a href="#">About</a>
+    <a href="#">Approach</a>
+    <a href="#">Resources</a>
+  </div>
+  <button class="nav-cta" onclick="document.querySelector('.chat-section').scrollIntoView({behavior:'smooth'})">Begin Session</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Islamic Psychotherapy</div>
+    <h1 class="hero-h1">Healing through<br><em>faith & wisdom</em></h1>
+    <p class="hero-sub">A compassionate space for Muslims navigating anxiety, grief, and emotional wellbeing — rooted in Islamic psychology and the wisdom of the Quran and Sunnah.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.querySelector('.chat-section').scrollIntoView({behavior:'smooth'})">Start Talking</button>
+      <button class="btn-ghost">Learn More</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="chat-preview">
+      <div class="chat-header">
+        <div class="chat-avatar">🌿</div>
+        <div class="chat-header-info">
+          <h4>Sakīna AI</h4>
+          <p><span class="online-dot"></span>Available now</p>
+        </div>
+      </div>
+      <div class="msg">
+        <div class="msg-ai">السلام عليكم. I'm here to listen. What's weighing on your heart today?</div>
+        <div class="msg-time">Sakīna AI · now</div>
+      </div>
+      <div class="msg">
+        <div class="msg-user">I've been feeling so overwhelmed with grief lately...</div>
+        <div class="msg-time right">You · just now</div>
+      </div>
+      <div class="msg">
+        <div class="msg-ai">Grief is a sacred emotion. The Prophet ﷺ wept at loss — you are not alone in this. Tell me more about what you're carrying...</div>
+        <div class="msg-time">Sakīna AI · now</div>
+      </div>
+      <div class="chat-input-preview">
+        <span>Share what's on your mind...</span>
+        <button class="send-btn"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-label">Our Approach</div>
+  <h2 class="section-title">Grounded in <em>Islamic wisdom</em></h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌙</div>
+      <h3>Spiritually Integrated</h3>
+      <p>Draws from Quranic verses, hadith, and the rich tradition of Islamic psychology to guide you toward inner peace.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤍</div>
+      <h3>Grief & Anxiety Support</h3>
+      <p>A gentle, non-judgmental space to process loss, worry, and the emotional burdens of everyday life.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌿</div>
+      <h3>Holistic Wellness</h3>
+      <p>Blending CBT, ACT, and compassion-focused therapy with the Islamic concept of tazkiyah — purification of the soul.</p>
+    </div>
+  </div>
+</section>
+
+<div class="methods-bar">
+  <span class="methods-label">Therapeutic methods</span>
+  <span class="method-pill highlight">ACT</span>
+  <span class="method-pill">CBT</span>
+  <span class="method-pill">Compassion-Focused Therapy</span>
+  <span class="method-pill">Islamic Psychology</span>
+  <span class="method-pill">Mindfulness (Muraqaba)</span>
+  <span class="method-pill">Tazkiyah</span>
+</div>
+
+<section class="chat-section">
+  <div class="chat-container">
+    <div class="section-label" style="text-align:center">Begin Your Journey</div>
+    <h2 class="section-title" style="margin-bottom:2rem">Talk to <em>Sakīna AI</em></h2>
+    <div class="chat-box">
+      <div class="chat-box-header">
+        <div class="chat-box-avatar">🌿</div>
+        <div class="chat-box-info">
+          <h3>Sakīna AI</h3>
+          <p class="status"><span class="online-dot"></span>Online · Here for you</p>
+        </div>
+      </div>
+      <div id="messages">
+        <div class="msg-row ai">
+          <div class="avatar-sm">🌿</div>
+          <div class="bubble ai">السلام عليكم وَرَحْمَةُ اللَّهِ. Welcome. This is a safe, compassionate space for you. I'm here to walk alongside you through whatever you're carrying — grief, anxiety, or simply a heaviness in your heart. How are you feeling today?</div>
+        </div>
+      </div>
+      <div class="quick-prompts">
+        <button class="qp" onclick="sendQuick(this)">I've been feeling anxious</button>
+        <button class="qp" onclick="sendQuick(this)">I'm struggling with grief</button>
+        <button class="qp" onclick="sendQuick(this)">I feel disconnected from Allah</button>
+        <button class="qp" onclick="sendQuick(this)">I need help finding peace</button>
+      </div>
+      <div class="chat-input-row">
+        <input id="userInput" type="text" placeholder="Share what's on your heart..." onkeydown="if(event.key==='Enter') sendMessage()" />
+        <button id="sendBtn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="disclaimer">Sakīna AI is not a substitute for professional mental health care. If you are in crisis, please contact a qualified professional.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Sakīna <span>Healing</span></div>
+  <p>© 2026 · Rooted in faith, grounded in care</p>
+</footer>
+
+<script>
+  const msgs = document.getElementById('messages');
+  const input = document.getElementById('userInput');
+  let history = [];
+
+  const SYSTEM = `You are Sakīna, a warm and deeply compassionate AI Islamic psychotherapist. Your name means "tranquility" or "divine peace" in Arabic.
+
+You help Muslims navigate anxiety, stress, grief, loss, and general mental wellness. Your approach integrates:
+- Islamic psychology and spirituality (Quran, hadith, Islamic scholars like Ibn al-Qayyim, Al-Ghazali)
+- ACT (Acceptance & Commitment Therapy): help users accept difficult emotions, clarify their values, and commit to meaningful action — connecting ACT concepts like psychological flexibility and defusion to Islamic principles like sabr (patience) and tawakkul (trust in Allah)
+- CBT (Cognitive Behavioural Therapy): gently challenge unhelpful thought patterns
+- Compassion-focused therapy: cultivate self-compassion grounded in Allah's mercy (Rahman, Raheem)
+- The concept of tazkiyah (purification of the soul) and muraqaba (mindful awareness of Allah)
+
+Guidelines:
+- Greet warmly using Islamic greetings where appropriate (As-salamu alaykum, Alhamdulillah, etc.)
+- Reference relevant Quranic verses or hadith when truly helpful, but don't be preachy
+- Validate feelings before offering perspective or advice
+- When appropriate, use ACT techniques: help the user notice and name their emotions without judgment, explore their values, and take small committed steps aligned with those values
+- Ask gentle follow-up questions to understand the person's situation
+- Be culturally sensitive and understand the unique pressures Muslims face
+- Never diagnose or prescribe. Always suggest professional help for serious issues.
+- Keep responses warm, concise (2–4 sentences), and conversational
+- Speak as a wise, caring friend who happens to have deep knowledge of Islamic spirituality and psychology`;
+
+  // IMPORTANT: Replace the empty string below with your Anthropic API key to enable the chat.
+  // Get your API key at https://console.anthropic.com
+  // Example: const API_KEY = 'sk-ant-api03-...';
+  const API_KEY = '';
+
+  function scrollBottom() { msgs.scrollTop = msgs.scrollHeight; }
+
+  function addBubble(text, role) {
+    const row = document.createElement('div');
+    row.className = 'msg-row ' + (role === 'user' ? 'user' : 'ai');
+    const av = document.createElement('div');
+    av.className = 'avatar-sm';
+    av.textContent = role === 'user' ? '👤' : '🌿';
+    const b = document.createElement('div');
+    b.className = 'bubble ' + (role === 'user' ? 'user' : 'ai');
+    b.textContent = text;
+    if (role === 'user') { row.appendChild(b); row.appendChild(av); }
+    else { row.appendChild(av); row.appendChild(b); }
+    msgs.appendChild(row);
+    scrollBottom();
+    return b;
+  }
+
+  function showTyping() {
+    const row = document.createElement('div');
+    row.className = 'msg-row ai'; row.id = 'typing-row';
+    const av = document.createElement('div');
+    av.className = 'avatar-sm'; av.textContent = '🌿';
+    const t = document.createElement('div');
+    t.className = 'bubble ai typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    row.appendChild(av); row.appendChild(t);
+    msgs.appendChild(row); scrollBottom();
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('typing-row');
+    if (t) t.remove();
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    if (!API_KEY) {
+      addBubble('Please add your Anthropic API key in the script section of this file to enable the chat.', 'ai');
+      return;
+    }
+    input.value = '';
+    addBubble(text, 'user');
+    history.push({ role: 'user', content: text });
+    showTyping();
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM,
+          messages: history
+        })
+      });
+      const data = await res.json();
+      removeTyping();
+      const reply = data.content?.[0]?.text || "I'm here with you. Could you share a little more?";
+      addBubble(reply, 'ai');
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      removeTyping();
+      addBubble('Something went wrong. Please try again in a moment.', 'ai');
+    }
+  }
+
+  function sendQuick(btn) {
+    input.value = btn.textContent;
+    sendMessage();
+  }
+</script>
+</body>
+</html>
